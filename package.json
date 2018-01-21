@@ -1,0 +1,17 @@
+{
+  "name": "missed-calls-notify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "publish": "npm run build && npm run upload",
+    "build": "npm run tsc",
+    "tsc": "tsc",
+    "upload": "gapps upload"
+  },
+  "author": "mursts",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/google-apps-script": "0.0.18"
+  }
+}
