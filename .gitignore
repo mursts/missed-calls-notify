@@ -1,3 +1,2 @@
 node_modules/
-src/*
-gapps.config.json
+dist
