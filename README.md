@@ -6,11 +6,11 @@ GASでGmailを検索して着信通知があればSlackにPOSTする。
 ## 使い方
 
 ```shell
-$ npm install -g node-google-apps-script
+$ npm i @google/clasp -g
 $ git clone git@github.com:mursts/missed-calls-notify
 $ cd missed-calls-notify
-$ gapps init xxxxxxx # https://script.google.com/d/xxxxxxx/edit?usp=drive_web
-$ npm run publish
+$ vi .clasp.json # add script_id
+$ npm run push 
 ```
 
 ### SlackのPOST URLを環境変数に追加
