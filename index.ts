@@ -4,9 +4,7 @@ const querySearchMail = 'is:unread from:(mail-noreply@fusioncom.co.jp) 【IP-Pho
 const telExp = '([0-9].* から着信がありました。)';
 const dateExp = '([0-9]{4}年[0-9]{2}月[0-9]{2}日 [0-9]{2}:[0-9]{2}:[0-9]{2})';
 
-declare var global: any;
-
-global.notify = (): void => {
+function checkMail() {
   GmailApp.search(querySearchMail).forEach(thread => {
     let messages = thread.getMessages();
     messages.forEach(message => {
@@ -20,9 +18,9 @@ global.notify = (): void => {
       postSlack(tel + ': ' + date);
 
       message.markRead();
-    })
-  })
-};
+    });
+  });
+}
 
 function postSlack(message: string) {
   let payload = {
@@ -33,6 +31,9 @@ function postSlack(message: string) {
     method: 'post',
     payload: JSON.stringify(payload)
   };
-  
-  UrlFetchApp.fetch(ScriptProperties.getProperty('SLACK_POST_URL')!, options)
+
+  let scriptProerties = PropertiesService.getScriptProperties();
+  let slackPostUrl = scriptProerties.getProperty('SLACK_POST_URL');
+
+  UrlFetchApp.fetch(slackPostUrl!, options)
 }
